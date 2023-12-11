@@ -1,11 +1,15 @@
 import { useRef, useState } from "react";
-import { isCredentialsValid } from "../helper";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/auth-context";
+import { getUserData, isCredentialsValid } from "../helper";
 
 function LoginForm() {
   const usernameInputRef = useRef();
   const passwordInputRef = useRef();
   const [isValid, setIsValid] = useState(true);
-  
+  const [_, setUserData] = useAuth();
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="w-full max-w-md bg-slate-50 border border-slate-200 rounded-lg shadow-md p-6">
@@ -44,13 +48,19 @@ function LoginForm() {
 
   function submitHandler(e) {
     e.preventDefault();
+
     const username = usernameInputRef.current.value;
     const password = usernameInputRef.current.value;
     const isValid = isCredentialsValid(username, password);
-    console.log({ username, password, isValid });
-    if (isValid) return;
-    setIsValid(false);
-    setTimeout(() => setIsValid(true), 1500);
+
+    if (!isValid) {
+      setIsValid(false);
+      setTimeout(() => setIsValid(true), 1500);
+      return;
+    }
+
+    setUserData(getUserData(username));
+    navigate("/", { replace: true });
   }
 }
 

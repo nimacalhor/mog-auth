@@ -3,6 +3,7 @@ import Auth from "./pages/Auth";
 import Home from "./pages/Home";
 import Settings from "./pages/Settings";
 import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const BrowserRouter = createBrowserRouter([
     {
@@ -16,11 +17,11 @@ const BrowserRouter = createBrowserRouter([
     },
     {
         path: '/settings',
-        element: <Settings />      
+        element: <ProtectedRoute component={Settings} restrictTo={["admin"]}/>     
     },
     {
         path: '/dashboard',
-        element: <Dashboard />      
+        element: <ProtectedRoute component={Dashboard} />    
     },
 ])
 
