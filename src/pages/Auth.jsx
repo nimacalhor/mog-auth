@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import LoginForm from "../components/LoginForm";
 
 function Auth() {
   return (
-    <div className='text-5xl'>Auth</div>
-  )
+    <main className="">
+      <section className="flex justify-center items-center h-screen">
+        <LoginForm />
+      </section>
+    </main>
+  );
 }
 
-export default Auth
+export default Auth;
