@@ -7,20 +7,20 @@ import Dashboard from "./pages/Dashboard";
 const BrowserRouter = createBrowserRouter([
     {
         path: '/auth',
-        Component: <Auth />
+        element: <Auth />
               
     },
     {
         path: '/',
-        Component: <Home />      
+        element: <Home />      
     },
     {
         path: '/settings',
-        Component: <Settings />      
+        element: <Settings />      
     },
     {
         path: '/dashboard',
-        Component: <Dashboard />      
+        element: <Dashboard />      
     },
 ])
 
